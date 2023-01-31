@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>EJERCICIO_13</TITLE>
+	</HEAD>
+	<BODY onload="ejercicio_13();">
+		<SCRIPT type="text/javascript">
+			//Este codigo ha sido generado por el modulo psexport 20180802-w32 de PSeInt.
+			//Es posible que el codigo generado no sea completamente correcto. Si encuentra
+			//errores por favor reportelos en el foro (http://pseint.sourceforge.net).
+
+			function ejercicio_13() {
+				var matriz = new Number();
+				var i = new Number();
+				var j = new Number();
+				var p = new Number();
+				var vector = new Number();
+				var size = new Number();
+				var long = new Number();
+				var flag = new Boolean();
+				p = 0;
+				flag = true;
+				document.write("Introduzca la dimension de la matriz cuadrada que vamos a cargar (como maximo el valor puede ser 10): ",'<BR/>');
+				size = Number(prompt());
+				var matriz = new Array(size); for (var aux_index_0=0;aux_index_0<size;aux_index_0++) { matriz[aux_index_0] = new Array(size); }
+				// Longitud del vector verificador equivale al tamaño de la matriz*2 + 2
+				long = size*2+2;
+				var vector = new Array(long);
+				// Inicializo el vector verificador
+				for (i=0;i<=long-1;i++) {
+					vector[i] = 0;
+				}
+				document.write("Ahora introduzca los datos para llenar la matriz a medida el programa los vaya solicitando. Los valores deben estar entre 1 y 9: ",'<BR/>');
+				for (i=0;i<=size-1;i++) {
+					for (j=0;j<=size-1;j++) {
+						// LLenamos la Matriz a mano
+						document.write("Introduzca el valor de fila ",i," columna ",j,'<BR/>');
+						matriz[i][j] = Number(prompt());
+					}
+				}
+				for (i=0;i<=size-1;i++) {
+					// Suponiendo que la matriz es 3x3
+					for (j=0;j<=size-1;j++) {
+						// recorro fila por fila las sumo y las guardo en las posiciones del vector de 0 a 2
+						vector[p] = vector[p]+matriz[i][j];
+						// recorro columna a columna las suma y las guardo en las posiciones de 3 a 5
+						vector[p+size] = vector[p+size]+matriz[j][i];
+					}
+					p = p+1;
+				}
+				for (i=0;i<=size-1;i++) {
+					// Recorro la diagonal principal y guardo la suma en la anteúltima posición
+					vector[long-2] = vector[long-2]+matriz[i][i];
+					// Recorro la diagonal secundaria y guardo la suma en la última posición
+					vector[long-1] = vector[long-1]+matriz[i][(size-1)-i];
+				}
+				for (i=0;i<=long-2;i++) {
+					// comparo posicion anterior con la siguiente para verificar que son todas iguales
+					if (vector[i]!=vector[i+1]) {
+						flag = false;
+					}
+				}
+				// Evaluamos el valor de flag y respondemos el ejercicio
+				if (flag) {
+					document.write("La Matriz es mágica",'<BR/>');
+				} else {
+					document.write("La Matriz no es mágica",'<BR/>');
+				}
+			}
+			
+		</SCRIPT>
+	</BODY>
+</HTML>
